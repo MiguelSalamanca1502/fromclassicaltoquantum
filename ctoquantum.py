@@ -16,14 +16,12 @@ def multSlits(mat, state, t):
     return result
 
 def quantumMultSlits(mat, state, t):
-    for i in range(len(mat)):
-        for j in range(len(mat[0])):
-            mat[i][j] = mat[i][j].real**2 + mat[i][j].imag**2
-
     result = np.dot(mat, state)
     for i in range(t - 1):
         result = np.dot(mat, result)
 
+    for i in range(len(result)):
+        result[i][0] = np.abs(result[i][0])**2
     return result
 
 def plot(state):
